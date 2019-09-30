@@ -25,6 +25,10 @@ dependencies {
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+
+    implementation("com.amazonaws:aws-lambda-java-core:1.2.0")
+    implementation("com.amazonaws:aws-lambda-java-events:2.2.6")
+
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
