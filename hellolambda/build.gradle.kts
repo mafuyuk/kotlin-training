@@ -40,3 +40,16 @@ application {
     // Define the main class for the application
     mainClassName = "hellolambda.HandlerKt"
 }
+
+tasks {
+    val buildZip by registering(Zip::class) {
+        from(compileKotlin)
+        from(processResources)
+        into("lib") {
+            from(configurations.compileClasspath)
+        }
+    }
+    named("build") {
+        dependsOn(buildZip)
+    }
+}
