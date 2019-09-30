@@ -8,8 +8,8 @@ class App {
         get() {
             return "Hello world."
         }
-}
 
-fun main(args: Array<String>) {
-    println(App().greeting)
+    public fun handler(): String {
+        return App().greeting
+    }
 }
