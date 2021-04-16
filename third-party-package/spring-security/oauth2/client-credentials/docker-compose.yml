@@ -1,0 +1,17 @@
+---
+version: '3.8'
+services:
+# <<< keycloak
+  # see https://hub.docker.com/r/jboss/keycloak/
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak
+    ports:
+      - "8088:8080"
+#    volumes:
+#      - "./docker/keycloak/realm.json:/tmp/realm.json"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+#      KEYCLOAK_IMPORT: /tmp/realm.json
+# >>> keycloak
