@@ -1,6 +1,36 @@
 # Client
+
+## アプリケーション起動
+```ShellSession
+user@host: ~/workspace $ ./gradlew bootRun
+```
+
+```ShellSession
+# 認可チェックしていないパスにリクエストを送る
+user@host: ~/workspace $ curl -XGET localhost:8080/home \
+  -H "Content-Type: application/json"
+home
+
+# 認可チェックしているパスにリクエストを送る
+user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
+  -H "Content-Type: application/json" | jq
+{
+  "timestamp": "2021-04-15T03:51:01.044+00:00",
+  "status": 403,
+  "error": "Forbidden",
+  "message": "",
+  "path": "/user/100"
+}
+
+# 認可チェックしているパスにアクセストークンを付与したリクエストを送る
+user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSRm1jNkY3aGtZaDFKVFd4b25fM09TR1hoZWt5eklDUlMxU3dIS1FJOTZnIn0.eyJleHAiOjE2MTg0NTkxMjMsImlhdCI6MTYxODQ1ODgyMywianRpIjoiZWE5Mzc0N2YtYjkyMS00NTQ2LWI5ZjYtYTE5NDY0ZTJiNzg3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg4L2F1dGgvcmVhbG1zL2RlbW8iLCJzdWIiOiIzZWJiNzFlYS1jNmU4LTRlYzgtYjhhOC0wZDI2ZWQ0MTNmODAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJkZW1vLWFwcCIsImFjciI6IjEiLCJzY29wZSI6InJlYWQiLCJjbGllbnRJZCI6ImRlbW8tYXBwIiwiY2xpZW50SG9zdCI6IjE3Mi4yMC4wLjEiLCJjbGllbnRBZGRyZXNzIjoiMTcyLjIwLjAuMSJ9.dkY849d4GL3daX02efrTYuo364Go4ncSB5OkWbq4u8HYfM-3bUqCq5MVAyAPDTF8eTlAX9ZPTHjBtAtTJUfcS8zH-ykAx-Rc0RHIonTM1WjxYhl2YMdJoHT1klVH7Wa6hIKsBfAYq01ydFh7fVJ4XmdjILEbDbw8fQHbGfIwetCtVxXK-RPk429tsK6kvZjY0H5a6jHmvW8gIvj_OisELJ2hGTcVzWBDBPb_QGXyFP5YtTfk-wWR-t-IoDSlJ40tkuisqimPqGKh7yfhV653ZNm8_hShUP_47M0x7NiIylinzCp6zO8z595N7AQpGxOS8-M_tfnmxFxztjOB6EgMQw" | jq
+```
+
+
 ## トークンエンドポイントの確認
-```bash
+```ShellSession
 $ curl http://localhost:8088/auth/realms/demo/.well-known/openid-configuration | jq .token_endpoint
 "http://localhost:8088/auth/realms/demo/protocol/openid-connect/token"
 ```
@@ -58,3 +88,10 @@ https://tools.ietf.org/html/rfc6749#section-2.1
 - https://qiita.com/TakahikoKawasaki/items/e508a14ed960347cff11
   - インプリシット・フローのみであれば認可エンドポイントの実装だけで済む
   - リソースオーナー・パスワード・クレデンシャルズ・フローもしくはクライアント・クレデンシャルズ・フローだけであればトークンエンドポイントの実装だけで済む
+- https://github.com/jgrandja/spring-security-oauth-5-2-migrate
+  - 実装の参考になる
+  - 他のパターンは https://github.com/spring-projects/spring-security/wiki/OAuth-2.0-Migration-Guide から探すとよい
+- https://qiita.com/kazuki43zoo/items/e925f134e65d7595aa3c
+  - Macherの参考になる
+- https://github.com/spring-projects/spring-security/tree/5.4.5/samples/
+  - spring securityのサンプル
