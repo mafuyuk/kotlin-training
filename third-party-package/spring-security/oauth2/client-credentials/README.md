@@ -8,19 +8,15 @@ user@host: ~/workspace $ ./gradlew bootRun
 ```ShellSession
 # 認可チェックしていないパスにリクエストを送る
 user@host: ~/workspace $ curl -XGET localhost:8080/home \
-  -H "Content-Type: application/json"
-home
+  -H "Content-Type: application/json" \
+  -w %{http_code}
+home200
 
 # 認可チェックしているパスにリクエストを送る
 user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
-  -H "Content-Type: application/json" | jq
-{
-  "timestamp": "2021-04-15T03:51:01.044+00:00",
-  "status": 403,
-  "error": "Forbidden",
-  "message": "",
-  "path": "/user/100"
-}
+  -H "Content-Type: application/json" \
+  -w %{http_code}
+401
 
 # 認可チェックしているパスにアクセストークンを付与したリクエストを送る
 user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \

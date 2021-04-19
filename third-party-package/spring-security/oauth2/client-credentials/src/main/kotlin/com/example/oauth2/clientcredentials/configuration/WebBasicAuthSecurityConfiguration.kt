@@ -10,9 +10,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class WebBasicAuthSecurityConfiguration : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.requestMatchers()
-            .mvcMatchers("/user/**")
-            .and()
-            .authorizeRequests().anyRequest().hasRole("read")
+        // homeはアクセスできる
+        http.authorizeRequests()
+            .antMatchers("/home")
+            .permitAll()
+
+        // userリソースは制限をかけている
+        http.authorizeRequests()
+            .mvcMatchers("/user/**").hasAuthority("SCOPE_user:read")
+            .anyRequest().authenticated()
+
+        http.oauth2ResourceServer()
+            .jwt()
     }
 }
