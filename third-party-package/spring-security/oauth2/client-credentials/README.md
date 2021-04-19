@@ -1,13 +1,13 @@
 # Client Credentials Sample
 # 環境構築
-```ShellSession
+```bash
 user@host: ~/workspace $ docker compose up -d
 user@host: ~/workspace $ ./gradlew bootRun
 ```
 
 # 動作確認
 ## リクエスト取得
-```ShellSession
+```bash
 # 認可チェックしていないパスにリクエストを送る
 user@host: ~/workspace $ curl -XGET localhost:8080/home \
   -H "Content-Type: application/json" \
@@ -21,27 +21,28 @@ user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
 401
 
 # 認可チェックしているパスにアクセストークンを付与したリクエストを送る
+user@host: ~/workspace $ export ACCESS_TOKEN="eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGSW96MktSMm1QaDJiQjZLSjZGNlloYUFfMjQxT3Fpd3IwZFMydnFMMlVZIn0.eyJleHAiOjE2MTg4MDI5ODEsImlhdCI6MTYxODgwMjY4MSwianRpIjoiYWZjZjMzODQtNzBkYy00NjE2LWJmOGUtYmYwNDdlMzgwYjk3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg4L2F1dGgvcmVhbG1zL2RlbW8iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMDcwODBjMDgtODE0MC00M2ZhLWIyNjQtZTIzYzk4YTkyNGViIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZGVtby1hcHAiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTcyLjI3LjAuMSIsImNsaWVudElkIjoiZGVtby1hcHAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC1kZW1vLWFwcCIsImNsaWVudEFkZHJlc3MiOiIxNzIuMjcuMC4xIn0.XQ4i2NYhslIcqeKym1gwqSs8ILwWzlDIvzNSWrQI7rkTl6q4JFFY84TKeVLcznJXjTXGvjvGVJlifwYWJc__ymip2yD5paeQGRi09LhO0Zp82PS2LHeeKy5cqmcCWskUKLh3XSyhAoiRRFsKhVllWtPySbGC4JmbXn6qLHi1nxxR8fz9js_NwVblzP1GkddShteCtLTJnq1NFwdNvuT6gYGfNKDfAA2Hb4Dy2UWaS1-KL_MfpqTH8ExEOuSfuvE5dIPuCAmgW4v0rUOP2nwzbf7lj7h8j43fbnclhngoQVZiWCBOtfPCIIgGKtot8tnwkKjQ3Zou-Tgn5pruaE7QRg"
 user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSRm1jNkY3aGtZaDFKVFd4b25fM09TR1hoZWt5eklDUlMxU3dIS1FJOTZnIn0.eyJleHAiOjE2MTg0NTkxMjMsImlhdCI6MTYxODQ1ODgyMywianRpIjoiZWE5Mzc0N2YtYjkyMS00NTQ2LWI5ZjYtYTE5NDY0ZTJiNzg3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg4L2F1dGgvcmVhbG1zL2RlbW8iLCJzdWIiOiIzZWJiNzFlYS1jNmU4LTRlYzgtYjhhOC0wZDI2ZWQ0MTNmODAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJkZW1vLWFwcCIsImFjciI6IjEiLCJzY29wZSI6InJlYWQiLCJjbGllbnRJZCI6ImRlbW8tYXBwIiwiY2xpZW50SG9zdCI6IjE3Mi4yMC4wLjEiLCJjbGllbnRBZGRyZXNzIjoiMTcyLjIwLjAuMSJ9.dkY849d4GL3daX02efrTYuo364Go4ncSB5OkWbq4u8HYfM-3bUqCq5MVAyAPDTF8eTlAX9ZPTHjBtAtTJUfcS8zH-ykAx-Rc0RHIonTM1WjxYhl2YMdJoHT1klVH7Wa6hIKsBfAYq01ydFh7fVJ4XmdjILEbDbw8fQHbGfIwetCtVxXK-RPk429tsK6kvZjY0H5a6jHmvW8gIvj_OisELJ2hGTcVzWBDBPb_QGXyFP5YtTfk-wWR-t-IoDSlJ40tkuisqimPqGKh7yfhV653ZNm8_hShUP_47M0x7NiIylinzCp6zO8z595N7AQpGxOS8-M_tfnmxFxztjOB6EgMQw" | jq
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -w %{http_code}
 ```
 
 ## トークンエンドポイントの確認
-```ShellSession
+```bash
 $ curl http://localhost:8088/auth/realms/demo/.well-known/openid-configuration | jq .token_endpoint
 "http://localhost:8088/auth/realms/demo/protocol/openid-connect/token"
 ```
 
 ## クライアントクレデンシャルでアクセストークン取得
-Keycloak側でクライアントクレデンシャルonにするためには以下の設定が必要
-`Service Accounts: On`
-`Access Type: confidential`
-
 ```bash
-$ export CLIENT_ID="demo-app"
-$ export CLIENT_CREDENTIAL="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
+# 固定値になるので毎回叩く必要なし
+#$ export CLIENT_ID="demo-app"
+#$ export CLIENT_CREDENTIAL="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
+#
+#$ echo "Basic $(echo -n "$CLIENT_ID:$CLIENT_CREDENTIAL" | openssl base64)"
+#Basic ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj
 
-$ echo "Basic $(echo -n "$CLIENT_ID:$CLIENT_CREDENTIAL" | openssl base64)"
 $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
 -H "Authorization: Basic ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj" \
 -H "Content-Type: application/x-www-form-urlencoded" \
@@ -56,10 +57,6 @@ $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/tok
   "scope": "read"
 }
 ```
-
-# クライアントタイプについて
-https://tools.ietf.org/html/rfc6749#section-2.1
-
 
 ## 参考リンク
 - https://baubaubau.hatenablog.com/entry/2021/02/12/201803
@@ -92,3 +89,5 @@ https://tools.ietf.org/html/rfc6749#section-2.1
   - Macherの参考になる
 - https://github.com/spring-projects/spring-security/tree/5.4.5/samples/
   - spring securityのサンプル
+- https://tools.ietf.org/html/rfc6749#section-2.1
+  - クライアントタイプについて
