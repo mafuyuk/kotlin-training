@@ -1,62 +1,62 @@
 # Client Credentials Sample
-# 環境構築
-```bash
-user@host: ~/workspace $ docker compose up -d
-user@host: ~/workspace $ ./gradlew bootRun
-```
+## 環境構築
+- 認可サーバー構築
+  ```bash
+  user@host: ~/workspace $ docker compose up -d
+  ```
+- リソースサーバー構築
+  ```bash
+  user@host: ~/workspace $ ./gradlew bootRun
+  ```
 
-# 動作確認
-## リクエスト取得
-```bash
-# 認可チェックしていないパスにリクエストを送る
-user@host: ~/workspace $ curl -XGET localhost:8080/home \
-  -H "Content-Type: application/json" \
-  -w %{http_code}
-home200
+## OAuthトランザクションの動作確認
+### トークンの発行
+- トークンエンドポイントの確認
+  - クライアントはトークンエンドポイントに対してアクセストークンを要求する
+  ```bash
+  user@host: ~/workspace $ curl http://localhost:8088/auth/realms/demo/.well-known/openid-configuration | jq .token_endpoint
+  "http://localhost:8088/auth/realms/demo/protocol/openid-connect/token"
+  ```
+  - クレデンシャルの暗号化
+  ```bash
+  user@host: ~/workspace $ export CLIENT_ID="demo-app"
+  user@host: ~/workspace $ export CLIENT_CREDENTIAL="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
 
-# 認可チェックしているパスにリクエストを送る
-user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
-  -H "Content-Type: application/json" \
-  -w %{http_code}
-401
+  user@host: ~/workspace $ echo -n "$CLIENT_ID:$CLIENT_CREDENTIAL" | openssl base64
+  ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj
+  ```
+  - アクセストークン取得
+  ```bash
+  user@host: ~/workspace $ export ACCESS_TOKEN="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
+  user@host: ~/workspace $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
+  -H "Authorization: Basic ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d 'grant_type=client_credentials' | jq .access_token
+  ```
 
-# 認可チェックしているパスにアクセストークンを付与したリクエストを送る
-user@host: ~/workspace $ export ACCESS_TOKEN="eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGSW96MktSMm1QaDJiQjZLSjZGNlloYUFfMjQxT3Fpd3IwZFMydnFMMlVZIn0.eyJleHAiOjE2MTg4MDI5ODEsImlhdCI6MTYxODgwMjY4MSwianRpIjoiYWZjZjMzODQtNzBkYy00NjE2LWJmOGUtYmYwNDdlMzgwYjk3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg4L2F1dGgvcmVhbG1zL2RlbW8iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMDcwODBjMDgtODE0MC00M2ZhLWIyNjQtZTIzYzk4YTkyNGViIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZGVtby1hcHAiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTcyLjI3LjAuMSIsImNsaWVudElkIjoiZGVtby1hcHAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC1kZW1vLWFwcCIsImNsaWVudEFkZHJlc3MiOiIxNzIuMjcuMC4xIn0.XQ4i2NYhslIcqeKym1gwqSs8ILwWzlDIvzNSWrQI7rkTl6q4JFFY84TKeVLcznJXjTXGvjvGVJlifwYWJc__ymip2yD5paeQGRi09LhO0Zp82PS2LHeeKy5cqmcCWskUKLh3XSyhAoiRRFsKhVllWtPySbGC4JmbXn6qLHi1nxxR8fz9js_NwVblzP1GkddShteCtLTJnq1NFwdNvuT6gYGfNKDfAA2Hb4Dy2UWaS1-KL_MfpqTH8ExEOuSfuvE5dIPuCAmgW4v0rUOP2nwzbf7lj7h8j43fbnclhngoQVZiWCBOtfPCIIgGKtot8tnwkKjQ3Zou-Tgn5pruaE7QRg"
-user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
+### トークンの使用
+  - トークンを付与しないパターンの確認
+  ```bash
+  # 認可チェックしていないパスにリクエストを送る
+  user@host: ~/workspace $ curl -XGET localhost:8080/home \
+    -H "Content-Type: application/json" \
+    -w %{http_code}
+  home200
+
+  # 認可チェックしているパスにリクエストを送る
+  user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
+    -H "Content-Type: application/json" \
+    -w %{http_code}
+  401
+  ```
+  - トークンを使用してのAPIリクエスト
+  ```bash
+  user@host: ~/workspace $ export ACCESS_TOKEN="上記で取得したトークンを貼る"
+  user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -w %{http_code}
-```
-
-## トークンエンドポイントの確認
-```bash
-$ curl http://localhost:8088/auth/realms/demo/.well-known/openid-configuration | jq .token_endpoint
-"http://localhost:8088/auth/realms/demo/protocol/openid-connect/token"
-```
-
-## クライアントクレデンシャルでアクセストークン取得
-```bash
-# 固定値になるので毎回叩く必要なし
-#$ export CLIENT_ID="demo-app"
-#$ export CLIENT_CREDENTIAL="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
-#
-#$ echo "Basic $(echo -n "$CLIENT_ID:$CLIENT_CREDENTIAL" | openssl base64)"
-#Basic ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj
-
-$ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
--H "Authorization: Basic ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d 'grant_type=client_credentials' | jq .
-
-{
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSRm1jNkY3aGtZaDFKVFd4b25fM09TR1hoZWt5eklDUlMxU3dIS1FJOTZnIn0.eyJleHAiOjE2MTg0Mjc4MzEsImlhdCI6MTYxODQyNzUzMSwianRpIjoiZmM3NzUxYzgtY2E4Ni00YjQ4LThiYzMtMTQ2OGViY2NmYWU1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg4L2F1dGgvcmVhbG1zL2RlbW8iLCJzdWIiOiIzZWJiNzFlYS1jNmU4LTRlYzgtYjhhOC0wZDI2ZWQ0MTNmODAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJkZW1vLWFwcCIsImFjciI6IjEiLCJzY29wZSI6InJlYWQiLCJjbGllbnRJZCI6ImRlbW8tYXBwIiwiY2xpZW50SG9zdCI6IjE3Mi4yMC4wLjEiLCJjbGllbnRBZGRyZXNzIjoiMTcyLjIwLjAuMSJ9.YUt72iFJmblTyU3hLiwB8a-UNHaU0UWtwkHu3dWY2i4Xg51PGTRFm5IWp2UAg8jvkSRjKF6A6BbTScd38hDoDqQjKvJPEDXFl5NE-EHsRp6nGwvOSW7GewFSbm8OHr45GSqDsybIy6bTLDKgI08wYC0P6N6Vp-uZrNa2ug-IWZN8VABRiU2o3EHdStJuGdvDQTKSnoyZcHTYDouerzW7ENhERtmma8ISaZHeAif8YBC-li8CM0SJ_zKTfQTILt_a_G_jBfJMe2UsVVmqEUULvrLhaG1V-VUTY5W6xrWV3STN9LHZpal10-2mIjvfrtHsLkNknwOMvQx5Y8EwViRDMw",
-  "expires_in": 300,
-  "refresh_expires_in": 0,
-  "token_type": "Bearer",
-  "not-before-policy": 0,
-  "scope": "read"
-}
-```
+  ```
 
 ## 参考リンク
 - https://baubaubau.hatenablog.com/entry/2021/02/12/201803
@@ -91,3 +91,5 @@ $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/tok
   - spring securityのサンプル
 - https://tools.ietf.org/html/rfc6749#section-2.1
   - クライアントタイプについて
+- https://keycloak-documentation.openstandia.jp/4.0.0.Final/ja_JP/server_admin/index.html#_service_accounts
+- https://k-ota.dev/keycloak-oidc-guide/
