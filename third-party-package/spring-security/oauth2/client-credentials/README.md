@@ -11,6 +11,8 @@
 
 ## OAuthトランザクションの動作確認
 ### トークンの発行
+認可サーバに対してアクセストークン発行をリクエストする
+
 - トークンエンドポイントの確認
   - クライアントはトークンエンドポイントに対してアクセストークンを要求する
   ```bash
@@ -36,6 +38,8 @@
   ```
 
 ### トークンの使用
+トークンを検証するのはリソースサーバ
+
   - トークンを付与しないパターンの確認
   ```bash
   # 認可チェックしていないパスにリクエストを送る
@@ -94,3 +98,4 @@
   - クライアントタイプについて
 - https://keycloak-documentation.openstandia.jp/4.0.0.Final/ja_JP/server_admin/index.html#_service_accounts
 - https://k-ota.dev/keycloak-oidc-guide/
+- https://qiita.com/opengl-8080/items/032ed0fa27a239bdc1cc
