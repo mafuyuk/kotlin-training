@@ -31,7 +31,8 @@
   user@host: ~/workspace $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
   -H "Authorization: Basic ${ACCESS_TOKEN}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d 'grant_type=client_credentials' | jq .access_token
+  -d 'grant_type=client_credentials' \
+  -d 'scope=read' | jq .access_token
   ```
 
 ### トークンの使用
@@ -47,7 +48,7 @@
   user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
     -H "Content-Type: application/json" \
     -w %{http_code}
-  401
+  {"timestamp":"2021-04-19T13:43:29.066+00:00","status":403,"error":"Forbidden","message":"Access Denied","path":"/user/100"}403
   ```
   - トークンを使用してのAPIリクエスト
   ```bash
