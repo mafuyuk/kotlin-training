@@ -99,3 +99,6 @@
 - https://keycloak-documentation.openstandia.jp/4.0.0.Final/ja_JP/server_admin/index.html#_service_accounts
 - https://k-ota.dev/keycloak-oidc-guide/
 - https://qiita.com/opengl-8080/items/032ed0fa27a239bdc1cc
+- https://kiririmode.hatenablog.jp/entry/20170205/1486287614
+  - トークンの種類
+  - Assertion トークンを使用する必要がありそうなのでJWTを使う必要がでてくる
