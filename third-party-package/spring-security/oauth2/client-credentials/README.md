@@ -102,3 +102,4 @@
 - https://kiririmode.hatenablog.jp/entry/20170205/1486287614
   - トークンの種類
   - Assertion トークンを使用する必要がありそうなのでJWTを使う必要がでてくる
+  - ただしAssertion トークンは途中で無効化ができないためexpire対応するしかない
