@@ -41,35 +41,13 @@
   "maxDeltaTimeSeconds": 43200,
   "failureFactor": 30,
   "roles": {
-    "realm": [
-      {
-        "id": "10b5a1c5-d601-4932-9587-57649549165b",
-        "name": "offline_access",
-        "description": "${role_offline-access}",
-        "composite": false,
-        "clientRole": false,
-        "containerId": "demo",
-        "attributes": {}
-      },
-      {
-        "id": "be509dd7-ecb1-434d-b792-6d4519d8edce",
-        "name": "uma_authorization",
-        "description": "${role_uma_authorization}",
-        "composite": false,
-        "clientRole": false,
-        "containerId": "demo",
-        "attributes": {}
-      }
-    ],
+    "realm": [],
     "client": {
       "demo-app": []
     }
   },
   "groups": [],
-  "defaultRoles": [
-    "offline_access",
-    "uma_authorization"
-  ],
+  "defaultRoles": [],
   "requiredCredentials": [
     "password"
   ],
@@ -118,10 +96,7 @@
       "serviceAccountClientId": "demo-app",
       "disableableCredentialTypes": [],
       "requiredActions": [],
-      "realmRoles": [
-        "offline_access",
-        "uma_authorization"
-      ],
+      "realmRoles": [],
       "notBefore": 0,
       "groups": []
     }
@@ -215,10 +190,7 @@
           }
         }
       ],
-      "defaultClientScopes": [
-        "read",
-        "role_list"
-      ],
+      "defaultClientScopes": ["read"],
       "optionalClientScopes": []
     }
   ],
@@ -231,30 +203,6 @@
         "include.in.token.scope": "true",
         "display.on.consent.screen": "true"
       }
-    },
-    {
-      "id": "92a17c3f-49c7-4c89-8d4a-d831accfd47e",
-      "name": "role_list",
-      "description": "SAML role list",
-      "protocol": "saml",
-      "attributes": {
-        "consent.screen.text": "${samlRoleListScopeConsentText}",
-        "display.on.consent.screen": "true"
-      },
-      "protocolMappers": [
-        {
-          "id": "69fd9c0f-0e7e-4eac-a62f-4289798f9c76",
-          "name": "role list",
-          "protocol": "saml",
-          "protocolMapper": "saml-role-list-mapper",
-          "consentRequired": false,
-          "config": {
-            "single": "false",
-            "attribute.nameformat": "Basic",
-            "attribute.name": "Role"
-          }
-        }
-      ]
     }
   ],
   "defaultDefaultClientScopes": [],
