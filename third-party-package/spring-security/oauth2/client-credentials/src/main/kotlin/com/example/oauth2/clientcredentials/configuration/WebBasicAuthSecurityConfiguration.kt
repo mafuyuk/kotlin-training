@@ -12,8 +12,9 @@ class WebBasicAuthSecurityConfiguration : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
             .antMatchers("/home").permitAll() // homeはアクセスできる
-            .anyRequest().hasAuthority("read") // それ他はscope readが付与されているアクセストークンを使用しないといけない
-//        http.oauth2ResourceServer()
-//            .jwt()
+            .anyRequest().hasAuthority("SCOPE_read") // それ他はscope readが付与されているアクセストークンを使用しないといけない
+
+        http.oauth2ResourceServer()
+            .jwt()
     }
 }
