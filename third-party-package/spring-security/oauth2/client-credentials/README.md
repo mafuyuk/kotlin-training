@@ -51,6 +51,11 @@
   -d 'grant_type=client_credentials' \
   -d 'scope=read' | jq .access_token
   ```
+  - アクセストークンの内容確認
+  ```bash
+  # アクセストークンをデコードして中身を確認できる
+  user@host: ~/workspace $ open https://jwt.io/#debugger
+  ```
 
 ### トークンの使用
 トークンを検証するのはリソースサーバ
@@ -118,4 +123,6 @@
   - トークンの種類
   - Assertion トークンを使用する必要がありそうなのでJWTを使う必要がでてくる
   - ただしAssertion トークンは途中で無効化ができないためexpire対応するしかない
-- https://jwt.io/#debugger
+  - https://qiita.com/TakahikoKawasaki/items/970548727761f9e02bcd#1-%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95%E3%81%AE%E5%88%86%E9%A1%9E
+- https://dev.classmethod.jp/articles/resource-server-configuration-with-spring-security5/
+  - token introspection
