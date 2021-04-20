@@ -1,4 +1,6 @@
 # Client Credentials Sample
+- [RFC6749 Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4)
+
 ## 環境構築
 - 認可サーバー構築
   ```bash
@@ -93,6 +95,12 @@
   -w %{http_code}
   100200
   ```
+
+### トークンのリフレッシュ
+クライアントクレデンシャルの場合、レスポンスにリフレッシュトークンを含めないほうが良さそう
+expire切れたら再生成を行っていく
+
+- [RFC6749 Client Credentials/Response](https://tools.ietf.org/html/rfc6749#section-4.4.3)
 
 ## 疑問点
 - JWTの場合、Access Tokenは永続化していないのか？
