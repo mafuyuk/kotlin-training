@@ -44,9 +44,9 @@
   ```
   - アクセストークン取得
   ```bash
-  user@host: ~/workspace $ export ACCESS_TOKEN="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
+  user@host: ~/workspace $ export CREDENTIAL="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
   user@host: ~/workspace $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
-  -H "Authorization: Basic ${ACCESS_TOKEN}" \
+  -H "Authorization: Basic ${CREDENTIAL}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d 'grant_type=client_credentials' \
   -d 'scope=read' | jq .access_token
