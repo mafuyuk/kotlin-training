@@ -77,6 +77,7 @@
   ```
   - トークンを付与するけど認可されていないリソースにアクセスするパターンの確認(403)
   ```bash
+  user@host: ~/workspace $ export ACCESS_TOKEN="トークンを貼る"
   user@host: ~/workspace $ curl -XGET localhost:8080/users \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -85,6 +86,7 @@
   ```
   - トークンを使用してのAPIリクエスト(200)
   ```bash
+  user@host: ~/workspace $ export ACCESS_TOKEN="トークンを貼る"
   user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
