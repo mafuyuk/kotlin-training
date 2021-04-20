@@ -3,6 +3,7 @@
 - 認可サーバー構築
   ```bash
   user@host: ~/workspace $ docker compose up -d
+  user@host: ~/workspace $ open http://localhost:8088/
   ```
 - リソースサーバー構築
   ```bash
@@ -15,13 +16,13 @@
 |        |                                |               |
 |        |----(1) Credential ------------>| Authorization |
 |        |                                | 　  Server    |
-|        |<---(2) Access Token -----------|               |
-|        |                                +---------------+
-| Client |                                
-|        |                                +---------------+
-|        |----(3) API Call with Token --->|               |
-|        |                                |   Resource    |
-|        |<---(4) API Response -----------|    Server     |
+|        |<---(2) Access Token -----------|               |<-----|
+|        |                                +---------------+      |
+| Client |                                                       | (4) Token Check
+|        |                                +---------------+      |
+|        |----(3) API Call with Token --->|               |      |
+|        |                                |   Resource    |------|
+|        |<---(5) API Response -----------|    Server     |
 |        |                                |               |
 +--------+                                +---------------+
 ```
@@ -58,9 +59,9 @@
   ```
 
 ### トークンの使用
-トークンを検証するのはリソースサーバ
+トークンを検証するのはリソースサーバ → 認可サーバー
 
-  - トークンを付与しないパターンの確認
+  - トークンを付与しないパターン(401)
   ```bash
   # 認可チェックしていないパスにリクエストを送る
   user@host: ~/workspace $ curl -XGET localhost:8080/home \
@@ -72,16 +73,28 @@
   user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
     -H "Content-Type: application/json" \
     -w %{http_code}
-  {"timestamp":"2021-04-19T13:43:29.066+00:00","status":403,"error":"Forbidden","message":"Access Denied","path":"/user/100"}403
+  401
   ```
-  - トークンを使用してのAPIリクエスト
+  - トークンを付与するけど認可されていないリソースにアクセスするパターンの確認(403)
   ```bash
-  user@host: ~/workspace $ export ACCESS_TOKEN="上記で取得したトークンを貼る"
+  user@host: ~/workspace $ curl -XGET localhost:8080/users \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -w %{http_code}
+  403
+  ```
+  - トークンを使用してのAPIリクエスト(200)
+  ```bash
   user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -w %{http_code}
+  100200
   ```
+
+## 疑問点
+- JWTの場合、Access Tokenは永続化していないのか？
+  - TODO: dockerでmysql使うようにしてデータを確認する
 
 ## 参考リンク
 - https://baubaubau.hatenablog.com/entry/2021/02/12/201803

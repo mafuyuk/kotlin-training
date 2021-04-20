@@ -190,14 +190,21 @@
           }
         }
       ],
-      "defaultClientScopes": ["read"],
+      "defaultClientScopes": ["read", "write"],
       "optionalClientScopes": []
     }
   ],
   "clientScopes": [
     {
-      "id": "75b943a9-72b5-4922-a033-e9f84b594fb6",
       "name": "read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "write",
       "protocol": "openid-connect",
       "attributes": {
         "include.in.token.scope": "true",

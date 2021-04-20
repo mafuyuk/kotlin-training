@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
 class UserController {
+    @GetMapping("user")
+    fun getUser(): ResponseEntity<String> {
+        return ResponseEntity.ok("users")
+    }
+
     @GetMapping("user/{id}")
     fun getUserById(@PathVariable("id") id: Int?): ResponseEntity<Int> {
         return ResponseEntity.ok(id)
