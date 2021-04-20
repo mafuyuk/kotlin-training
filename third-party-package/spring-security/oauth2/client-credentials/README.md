@@ -40,16 +40,16 @@
   - クレデンシャルの暗号化
   ```bash
   user@host: ~/workspace $ export CLIENT_ID="demo-app"
-  user@host: ~/workspace $ export CLIENT_CREDENTIAL="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
+  user@host: ~/workspace $ export CLIENT_SECRET="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
 
-  user@host: ~/workspace $ echo -n "$CLIENT_ID:$CLIENT_CREDENTIAL" | openssl base64
+  user@host: ~/workspace $ echo -n "$CLIENT_ID:CLIENT_SECRET" | openssl base64
   ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj
   ```
   - アクセストークン取得
   ```bash
-  user@host: ~/workspace $ export CREDENTIAL="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
+  user@host: ~/workspace $ export CLIENT_CREDENTIAL="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
   user@host: ~/workspace $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
-  -H "Authorization: Basic ${CREDENTIAL}" \
+  -H "Authorization: Basic ${CLIENT_CREDENTIAL}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d 'grant_type=client_credentials' \
   -d 'scope=read' | jq .access_token
