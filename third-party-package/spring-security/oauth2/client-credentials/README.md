@@ -149,3 +149,4 @@ expire切れたら再生成を行っていく
   - https://qiita.com/TakahikoKawasaki/items/970548727761f9e02bcd#1-%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95%E3%81%AE%E5%88%86%E9%A1%9E
 - https://dev.classmethod.jp/articles/resource-server-configuration-with-spring-security5/
   - token introspection
+- https://www.authlete.com/ja/resources/videos/
