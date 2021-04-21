@@ -150,3 +150,16 @@ expire切れたら再生成を行っていく
 - https://dev.classmethod.jp/articles/resource-server-configuration-with-spring-security5/
   - token introspection
 - https://www.authlete.com/ja/resources/videos/
+
+## RFC
+- [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/rfc6749/)
+- [JSON Web Signature (JWS)](https://datatracker.ietf.org/doc/rfc7515/)
+- [JSON Web Encryption (JWE)](https://datatracker.ietf.org/doc/rfc7516/)
+- [JSON Web Key (JWK)](https://datatracker.ietf.org/doc/rfc7517/)
+  - [日本語訳](https://openid-foundation-japan.github.io/rfc7517.ja.html)
+- [JSON Web Algorithms (JWA)](https://datatracker.ietf.org/doc/rfc7518/)
+- [JSON Web Token (JWT)](https://datatracker.ietf.org/doc/rfc7519/)
+  - JWT は JSON (の Base64 URL Encode) 形式で Assertion を生成するための仕様
+- [Examples of Protecting Content Using JSON Object Signing and Encryption (JOSE)](https://datatracker.ietf.org/doc/rfc7520/)
+- [Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants](https://datatracker.ietf.org/doc/rfc7521/)
+- [JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://datatracker.ietf.org/doc/rfc7523/)
