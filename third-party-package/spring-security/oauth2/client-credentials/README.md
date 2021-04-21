@@ -153,6 +153,8 @@ expire切れたら再生成を行っていく
 
 ## RFC
 - [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/rfc6749/)
+  - [日本語訳](https://openid-foundation-japan.github.io/rfc6749.ja.html)
+- [An IETF URN Sub-Namespace for OAuth](https://datatracker.ietf.org/doc/rfc6755/)
 - [JSON Web Signature (JWS)](https://datatracker.ietf.org/doc/rfc7515/)
 - [JSON Web Encryption (JWE)](https://datatracker.ietf.org/doc/rfc7516/)
 - [JSON Web Key (JWK)](https://datatracker.ietf.org/doc/rfc7517/)
