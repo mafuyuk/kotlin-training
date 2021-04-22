@@ -3,11 +3,13 @@
 
 ## 環境構築
 - 認可サーバー構築
+  認可サーバーはOSSの[Keycloak](https://www.keycloak.org/)を使用
   ```bash
   user@host: ~/workspace $ docker compose up -d
   user@host: ~/workspace $ open http://localhost:8088/
   ```
 - リソースサーバー構築
+  リソースサーバーはKotlin + Spring Boot + Spring Securityで構築
   ```bash
   user@host: ~/workspace $ ./gradlew bootRun
   ```
@@ -150,6 +152,9 @@ expire切れたら再生成を行っていく
 - https://dev.classmethod.jp/articles/resource-server-configuration-with-spring-security5/
   - token introspection
 - https://www.authlete.com/ja/resources/videos/
+- https://www.baeldung.com/spring-security-oauth2-jws-jwk
+  - トークンの鍵とってきて検証する部分の参考になりそう
+- https://oauth.jp/blog/2015/05/20/jose-and-oauth-assertion-rfcs/
 
 ## RFC
 - [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/rfc6749/)
