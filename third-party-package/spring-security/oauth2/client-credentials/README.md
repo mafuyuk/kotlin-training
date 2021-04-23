@@ -155,6 +155,8 @@ expire切れたら再生成を行っていく
 - https://www.baeldung.com/spring-security-oauth2-jws-jwk
   - トークンの鍵とってきて検証する部分の参考になりそう
 - https://oauth.jp/blog/2015/05/20/jose-and-oauth-assertion-rfcs/
+- https://www.baeldung.com/keycloak-embedded-in-spring-boot-app
+  - Embeded Keycloak
 
 ## RFC
 - [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/rfc6749/)
