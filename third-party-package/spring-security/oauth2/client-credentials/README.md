@@ -17,17 +17,17 @@
 ## OAuthトランザクションの動作確認
 ```
 +--------+                                +---------------+
-|        |                                |               |
-|        |----(1) Credential ------------>| Authorization |
-|        |                                | 　  Server    |
-|        |<---(2) Access Token -----------|               |<-----|
+|        |----(1) Credential ------------>|               |
+|        |                                | Authorization |
+|        |<---(2) Access Token -----------| 　  Server    |
+|        |                                |               |<-----|
 |        |                                +---------------+      |
-| Client |                                                       | (4) Token Check
+| Client |                                                       | (4) Request Public Keys
 |        |                                +---------------+      |
-|        |----(3) API Call with Token --->|               |      |
-|        |                                |   Resource    |------|
-|        |<---(5) API Response -----------|    Server     |
-|        |                                |               |
+|        |----(3) API Call with Token --->|               |------|
+|        |                                |   Resource    |
+|        |                                |    Server     |------| (5) Verify Signature
+|        |<---(7) API Response -----------|               |<-----| (6) Verify Permissions
 +--------+                                +---------------+
 ```
 ### トークンの発行
