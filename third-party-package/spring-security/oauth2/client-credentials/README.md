@@ -23,8 +23,8 @@
 |        |                                |               |<-----|
 |        |                                +---------------+      |
 | Client |                                                       | (4) Request Public Keys
-|        |                                +---------------+      |
-|        |----(3) API Call with Token --->|               |------|
+|        |                                +---------------+      |     Response JWK
+|        |----(3) API Call with JWT ----->|               |------|
 |        |                                |   Resource    |
 |        |                                |    Server     |------| (5) Verify Signature
 |        |<---(7) API Response -----------|               |<-----| (6) Verify Permissions
