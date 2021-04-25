@@ -1,4 +1,4 @@
-package com.example.oauth2.clientcredentials.configuration
+package com.oauth2.clientcredentials.resourceserver.configuration
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity

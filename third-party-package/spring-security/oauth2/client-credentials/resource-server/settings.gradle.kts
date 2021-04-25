@@ -1,1 +1,1 @@
-rootProject.name = "clientcredentials"
+rootProject.name = "resourceserver"

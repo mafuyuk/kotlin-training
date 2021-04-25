@@ -1,4 +1,4 @@
-package com.example.oauth2.clientcredentials.controller
+package com.oauth2.clientcredentials.resourceserver.controller
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

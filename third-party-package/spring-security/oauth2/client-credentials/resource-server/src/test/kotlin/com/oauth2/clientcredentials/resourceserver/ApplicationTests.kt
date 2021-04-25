@@ -1,4 +1,4 @@
-package com.example.oauth2.clientcredentials
+package com.oauth2.clientcredentials.resourceserver
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
