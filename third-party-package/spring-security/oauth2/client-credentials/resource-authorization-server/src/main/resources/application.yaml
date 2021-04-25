@@ -8,7 +8,11 @@ logging:
     org.springframework.security.oauth2: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
 security:
+  signing-key: demo-app
   oauth2:
+    authorization:
+      token-key-access: permitAll()
+      check-token-access: permitAll()
     client:
       client-id: demo-app
       client-secret: 8bb69f21-6965-41a1-b0e6-7907435d2ddd

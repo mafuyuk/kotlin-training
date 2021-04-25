@@ -83,8 +83,33 @@
   -w %{http_code}
   100200
   ```
+  
+## トークンの内容
+## 詳細
+今回はHS256利用する
+base64でエンコードしピリオド(.)で繋いだヘッダーとペイロードを署名アルゴリズム(HS256)でハッシュ化しJWTに格納、JWT利用時に検証することで改ざん対策を行う
+
+### 動作確認
+[アクセストークン例](https://jwt.io/#debugger-io?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTYxOTQwMDYxNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6InZGaVFzT0VSdkowbTRVcS05aEl4ZXh3X1hUayIsImNsaWVudF9pZCI6ImRlbW8tYXBwIn0.xsvCWnISqJ9lWJLUll4-blRg3BfxCpeQkXCdm9swYcY)
+
+- 改ざんれていないかの確認
+  - 署名アルゴリズムとSecretの確認
+  ※ 実際にはこちらは見れないようにしないといけない
+  ```bash
+  user@host: ~/workspace $ curl  http://localhost:8080/oauth/token_key \
+     -H "Authorization: Basic ${CLIENT_CREDENTIAL}"
+  {"alg":"HMACSHA256","value":"demo-app"}
+  ```
+  - ハッシュ化した値が`xsvCWnISqJ9lWJLUll4-blRg3BfxCpeQkXCdm9swYcY`と等しいかチェックする
+  ```bash
+  user@host: ~/workspace $ echo -n "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTYxOTQwMDYxNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6InZGaVFzT0VSdkowbTRVcS05aEl4ZXh3X1hUayIsImNsaWVudF9pZCI6ImRlbW8tYXBwIn0" \
+    | openssl dgst -sha256 -hmac "demo-app"
+  c6cbc25a7212a89f655892d4965e3e6e5460dc17f10a979091709d9bdb3061c6
+  ```
 
 ## 参考リンク
 - [JWS + JWK in a Spring Security OAuth2 Application](https://www.baeldung.com/spring-security-oauth2-jws-jwk)
 - [Spring Security OAuth 2.0 Roadmap Update](https://spring.io/blog/2019/11/14/spring-security-oauth-2-0-roadmap-update)
   - Authorization Serverのサポートがなくなった
+- [攻撃して学ぶJWT【ハンズオンあり】](https://moneyforward.com/engineers_blog/2020/09/15/jwt/)
+  - セキュリティに関して
