@@ -7,10 +7,8 @@ logging:
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8088/auth/realms/demo
-          jwk-set-uri: http://localhost:8088/auth/realms/demo/protocol/openid-connect/certs
+security:
+  oauth2:
+    client:
+      client-id: demo-app
+      client-secret: 8bb69f21-6965-41a1-b0e6-7907435d2ddd

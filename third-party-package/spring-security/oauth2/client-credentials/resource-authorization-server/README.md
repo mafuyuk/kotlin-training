@@ -25,25 +25,18 @@
 ```
 ### トークンの発行
 リソースサーバの認可機能に対して、Credentialを使用してアクセストークン発行をリクエストする
-
-- トークンエンドポイントの確認
-  - クライアントはトークンエンドポイントに対してアクセストークンを要求する
-  ```bash
-  user@host: ~/workspace $ curl http://localhost:8088/auth/realms/demo/.well-known/openid-configuration | jq .token_endpoint
-  "http://localhost:8088/auth/realms/demo/protocol/openid-connect/token"
-  ```
-  - クレデンシャルの暗号化
+- クレデンシャルの暗号化
   ```bash
   user@host: ~/workspace $ export CLIENT_ID="demo-app"
-  user@host: ~/workspace $ export CLIENT_SECRET="8bb69f21-6965-41a1-b0e6-7907435d2ddc"
+  user@host: ~/workspace $ export CLIENT_SECRET="8bb69f21-6965-41a1-b0e6-7907435d2ddd"
 
-  user@host: ~/workspace $ echo -n "$CLIENT_ID:CLIENT_SECRET" | openssl base64
-  ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj
+  user@host: ~/workspace $ echo -n "$CLIENT_ID:$CLIENT_SECRET" | openssl base64
+  ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRk
   ```
-  - アクセストークン取得
+- アクセストークン取得
   ```bash
-  user@host: ~/workspace $ export CLIENT_CREDENTIAL="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRj"
-  user@host: ~/workspace $ curl -XPOST http://localhost:8088/auth/realms/demo/protocol/openid-connect/token \
+  user@host: ~/workspace $ export CLIENT_CREDENTIAL="ZGVtby1hcHA6OGJiNjlmMjEtNjk2NS00MWExLWIwZTYtNzkwNzQzNWQyZGRk"
+  user@host: ~/workspace $ curl -XPOST http://localhost:8080/oauth/token \
   -H "Authorization: Basic ${CLIENT_CREDENTIAL}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d 'grant_type=client_credentials' \
@@ -90,3 +83,8 @@
   -w %{http_code}
   100200
   ```
+
+## 参考リンク
+- [JWS + JWK in a Spring Security OAuth2 Application](https://www.baeldung.com/spring-security-oauth2-jws-jwk)
+- [Spring Security OAuth 2.0 Roadmap Update](https://spring.io/blog/2019/11/14/spring-security-oauth-2-0-roadmap-update)
+  - Authorization Serverのサポートがなくなった
