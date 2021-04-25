@@ -64,7 +64,7 @@
   user@host: ~/workspace $ curl -XGET localhost:8080/home \
     -H "Content-Type: application/json" \
     -w %{http_code}
-  home200
+  home2200
 
   # 認可チェックしているパスにリクエストを送る
   user@host: ~/workspace $ curl -XGET localhost:8080/user/100 \

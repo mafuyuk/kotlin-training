@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping
 class HomeController {
     @GetMapping("home")
     fun getHome(): ResponseEntity<String> {
-        return ResponseEntity.ok("home")
+        return ResponseEntity.ok("home2")
     }
 }
