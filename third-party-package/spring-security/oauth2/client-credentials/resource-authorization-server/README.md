@@ -1,6 +1,4 @@
-# Authorization Server Sample
-Authorization Server Sampleといいつつも
-Resource ServerにJWK setURLを用意し、トークンの検証を行うようにする実装
+# Resource(Authorization含む)Server Sample
 
 ## 環境構築
 - リソースサーバー(一部認可サーバーの機能含む)構築
