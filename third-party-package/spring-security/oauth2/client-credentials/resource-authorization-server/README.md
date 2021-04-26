@@ -113,3 +113,5 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
   - Authorization Serverのサポートがなくなった
 - [攻撃して学ぶJWT【ハンズオンあり】](https://moneyforward.com/engineers_blog/2020/09/15/jwt/)
   - セキュリティに関して
+- [spring jwt decoder openid token](https://stackoverflow.com/questions/54512182/spring-jwt-decoder-openid-token)
+  - リソースサーバーでHS256設定を利用する参考
