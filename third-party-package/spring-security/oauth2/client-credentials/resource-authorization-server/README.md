@@ -102,9 +102,12 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
   ```
   - ハッシュ化した値が`xsvCWnISqJ9lWJLUll4-blRg3BfxCpeQkXCdm9swYcY`と等しいかチェックする
   ```bash
-  user@host: ~/workspace $ echo -n "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTYxOTQwMDYxNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6InZGaVFzT0VSdkowbTRVcS05aEl4ZXh3X1hUayIsImNsaWVudF9pZCI6ImRlbW8tYXBwIn0" \
-    | openssl dgst -sha256 -hmac "demo-app"
-  c6cbc25a7212a89f655892d4965e3e6e5460dc17f10a979091709d9bdb3061c6
+  user@host: export MESSAGE="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTYxOTQwMDYxNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6InZGaVFzT0VSdkowbTRVcS05aEl4ZXh3X1hUayIsImNsaWVudF9pZCI6ImRlbW8tYXBwIn0"
+  user@host: export SECRET_KEY="demo-app"
+  user@host: ~/workspace $ echo -n $MESSAGE \
+    | openssl dgst -hmac $SECRET_KEY -sha256 -binary \
+    | openssl enc -base64 -A | sed 's/=$//'
+  xsvCWnISqJ9lWJLUll4+blRg3BfxCpeQkXCdm9swYcY
   ```
 
 ## 参考リンク
@@ -115,3 +118,4 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
   - セキュリティに関して
 - [spring jwt decoder openid token](https://stackoverflow.com/questions/54512182/spring-jwt-decoder-openid-token)
   - リソースサーバーでHS256設定を利用する参考
+- [Generating HMAC Signatures on the Command Line with OpenSSL](https://www.jvt.me/posts/2020/02/21/openssl-hmac/)
