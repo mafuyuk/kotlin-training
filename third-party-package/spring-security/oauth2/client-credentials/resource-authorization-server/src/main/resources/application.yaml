@@ -7,8 +7,14 @@ logging:
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jws-algorithm: HS256
 security:
-  signing-key: demo-app
+  signing-key: secret
   oauth2:
     authorization:
       token-key-access: permitAll()
