@@ -112,6 +112,8 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
 
 ## 参考リンク
 - [JWS + JWK in a Spring Security OAuth2 Application](https://www.baeldung.com/spring-security-oauth2-jws-jwk)
+- [Spring Security OAuth Authorization Server](https://www.baeldung.com/spring-security-oauth-auth-server)
+  - [新しい Spring Authorization Server について](https://qiita.com/TakahikoKawasaki/items/953d2257a1f1e2f6df70)で指摘されている点は気になる
 - [Spring Security OAuth 2.0 Roadmap Update](https://spring.io/blog/2019/11/14/spring-security-oauth-2-0-roadmap-update)
   - Authorization Serverのサポートがなくなった
 - [攻撃して学ぶJWT【ハンズオンあり】](https://moneyforward.com/engineers_blog/2020/09/15/jwt/)
