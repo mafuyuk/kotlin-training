@@ -111,6 +111,7 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
   ```
 
 ## 参考リンク
+- [OAuth 2 Developers Guide](https://projects.spring.io/spring-security-oauth/docs/oauth2.html)
 - [JWS + JWK in a Spring Security OAuth2 Application](https://www.baeldung.com/spring-security-oauth2-jws-jwk)
 - [Spring Security OAuth Authorization Server](https://www.baeldung.com/spring-security-oauth-auth-server)
   - [新しい Spring Authorization Server について](https://qiita.com/TakahikoKawasaki/items/953d2257a1f1e2f6df70)で指摘されている点は気になる
@@ -121,3 +122,4 @@ base64でエンコードしピリオド(.)で繋いだヘッダーとペイロ�
 - [spring jwt decoder openid token](https://stackoverflow.com/questions/54512182/spring-jwt-decoder-openid-token)
   - リソースサーバーでHS256設定を利用する参考
 - [Generating HMAC Signatures on the Command Line with OpenSSL](https://www.jvt.me/posts/2020/02/21/openssl-hmac/)
+- [OAuth2 Autoconfig](https://docs.spring.io/spring-security-oauth2-boot/docs/2.0.0.RC2/reference/htmlsingle/)
