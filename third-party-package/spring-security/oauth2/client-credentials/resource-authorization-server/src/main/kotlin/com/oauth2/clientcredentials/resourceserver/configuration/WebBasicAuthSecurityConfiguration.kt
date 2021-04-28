@@ -32,13 +32,13 @@ class WebBasicAuthSecurityConfiguration : WebSecurityConfigurerAdapter() {
                     .anyRequest().hasAuthority("SCOPE_read") // その他はscope readが付与されているアクセストークンを使用しないといけない
             .and()
                 .oauth2ResourceServer()
-                    .jwt()// { jwtSpec -> jwtSpec.decoder(jwtDecoder()) }
+                    .jwt().decoder(jwtDecoder())
     }
 
     @Bean
     fun jwtDecoder(): JwtDecoder? {
         val secretKey = SecretKeySpec(signingKey.toByteArray(), "HS256")
-        logger.info(secretKey.toString())
+        logger.info("----動作確認----")
         return NimbusJwtDecoder.withSecretKey(secretKey).build()
     }
 }
