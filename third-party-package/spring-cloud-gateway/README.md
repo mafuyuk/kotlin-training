@@ -1,3 +1,4 @@
+TODO: 非ブロッキングなゲートウェイだったので一旦調査を途中でとりやめ(WebFlux使わないといけない)
 # Spring Cloud Gateway
 https://spring.pleiades.io/projects/spring-cloud-gateway
 
