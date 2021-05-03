@@ -5,6 +5,9 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
 
 spring:
   cloud:
@@ -13,4 +16,4 @@ spring:
         - id: backend
           uri: http://localhost:80
           predicates:
-            - Path=/status/**
+            - Path=/**
