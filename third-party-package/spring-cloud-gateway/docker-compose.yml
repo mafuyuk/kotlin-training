@@ -1,0 +1,11 @@
+---
+version: '3.8'
+services:
+  # <<< httpbin
+  # see https://github.com/postmanlabs/httpbin
+  httpbin:
+    container_name: httpbin
+    image: kennethreitz/httpbin
+    ports:
+      - "80:80"
+# >>> httpbin
