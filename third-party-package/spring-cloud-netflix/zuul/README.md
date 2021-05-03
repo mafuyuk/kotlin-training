@@ -20,3 +20,4 @@ $ curl http://localhost:8080/status/200 -i
 
 ## 参考リンク
 - [Netflix Zuul ルーティング](https://spring.pleiades.io/guides/gs/routing-and-filtering/)
+- [Api Gateway using ZUUL #1 || Netflix ZUUL || Netflix Zuul with Spring Boot || Green Learner](https://www.youtube.com/watch?v=-I-9gK8NWXY)
