@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+
+zuul:
+  routes:
+    books.url=http://localhost:8090
+
+ribbon.eureka.enabled=false
