@@ -63,3 +63,4 @@ Date: Thu, 06 May 2021 07:03:47 GMT
 ## 参考リンク
 - [Netflix Zuul ルーティング](https://spring.pleiades.io/guides/gs/routing-and-filtering/)
 - [Api Gateway using ZUUL #1 || Netflix ZUUL || Netflix Zuul with Spring Boot || Green Learner](https://www.youtube.com/watch?v=-I-9gK8NWXY)
+- [Spring REST with a Zuul Proxy](https://www.baeldung.com/spring-rest-with-zuul-proxy)
