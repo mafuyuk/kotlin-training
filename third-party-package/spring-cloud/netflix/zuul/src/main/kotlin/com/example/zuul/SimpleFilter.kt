@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest
 
 
 class SimpleFilter : ZuulFilter() {
-    private val log = LoggerFactory.getLogger(SimpleFilter::class.java)
+    private val logger = LoggerFactory.getLogger(SimpleFilter::class.java)
 
     override fun filterType(): String {
         return "pre"
@@ -24,7 +24,7 @@ class SimpleFilter : ZuulFilter() {
     override fun run(): Any? {
         val ctx: RequestContext = RequestContext.getCurrentContext()
         val request: HttpServletRequest = ctx.getRequest()
-        log.info(java.lang.String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()))
+        logger.info(java.lang.String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()))
         return null
     }
 }
