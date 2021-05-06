@@ -5,6 +5,12 @@ https://spring.pleiades.io/projects/spring-cloud-gateway
 ## 環境構築
 ```bash
 $ docker compose up -d
+$ ./gradlew bootRun
+```
+
+## 実行
+### httpbinを叩く
+```bash
 $ curl http://localhost:80/status/200 -i
 HTTP/1.1 200 OK
 Server: gunicorn/19.9.0
@@ -14,7 +20,9 @@ Content-Type: text/html; charset=utf-8
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 Content-Length: 0
+```
 
-$ ./gradlew bootRun
+### プロキシ経由でhttpbinを叩く
+```bash
 $ curl http://localhost:8080/status/200 -i
 ```
