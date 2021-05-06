@@ -1,11 +1,13 @@
 # Zuul1
-Zuul1はServletでZuul2はReactive
-
 Zuul1を利用しているため
 Spring Bootのversionは2.2.x, 2.3.x
 Spring CloudのversionはHoxtonに固定される
 
 https://spring.io/projects/spring-cloud
+
+Spring Cloudのversion 2020.0.xからは`spring-cloud-starter-netflix-zuul`は削除されていて
+代替としてSpring Cloud Gatewayを推奨されているがZuul2も出ている
+ただし、Spring Cloud GatewayもZuul2もReactiveである(Zuul1はServlet)
 
 ## 環境構築
 ```bash
