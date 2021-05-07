@@ -1,4 +1,5 @@
 # Spring WebFlux
+※現状ランタイムエラーで落ちる
 ## 環境構築
 ```bash
 user@host: ~/workspace $ ./gradlew bootRun
