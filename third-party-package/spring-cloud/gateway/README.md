@@ -26,3 +26,6 @@ Content-Length: 0
 ```bash
 $ curl http://localhost:8080/status/200 -i
 ```
+
+# 参考リンク
+- [](https://www.baeldung.com/spring-cloud-gateway)
