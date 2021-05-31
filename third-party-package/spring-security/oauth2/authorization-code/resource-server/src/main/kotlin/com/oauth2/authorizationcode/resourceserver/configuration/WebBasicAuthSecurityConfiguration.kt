@@ -13,9 +13,7 @@ class WebBasicAuthSecurityConfiguration : WebSecurityConfigurerAdapter() {
         http.cors()
             .and()
                 .authorizeRequests()
-                    .antMatchers("/home").permitAll() // homeはアクセスできる
-                    .antMatchers("/users").hasAuthority("SCOPE_hoge") // usersはscopeが存在しないのでアクセスできない
-                    .anyRequest().hasAuthority("SCOPE_read") // その他はscope readが付与されているアクセストークンを使用しないといけない
+                    .antMatchers("/home").hasAuthority("SCOPE_email")
             .and()
                 .oauth2ResourceServer()
                     .jwt()
