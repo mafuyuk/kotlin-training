@@ -3,14 +3,14 @@ server:
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8088/auth/realms/demo
-          jwk-set-uri: http://localhost:8088/auth/realms/demo/protocol/openid-connect/certs
+          issuer-uri: https://creationline-kamono-test.okta.com
+          jwk-set-uri: https://creationline-kamono-test.okta.com/oauth2/v1/keys
