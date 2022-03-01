@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+# <<< tomcat
+# `./gradlew bootWar` コマンドで生成されたwarファイルがtomcat上で実行される。
+  tomcat:
+    image: tomcat:9
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./build/libs/tomcat-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+# >>> tomcat

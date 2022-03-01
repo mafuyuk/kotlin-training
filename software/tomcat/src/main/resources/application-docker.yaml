@@ -1,0 +1,18 @@
+#
+# Application
+# ----------------------------------------------------------------------------
+spring:
+  application:
+    name: tomcat
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+
+server:
+  port: 8080
+  forward-headers-strategy: native
+  error:
+    include-exception: false
+    include-stacktrace: never
+    include-message: always
+    whitelabel:
+      enabled: false
