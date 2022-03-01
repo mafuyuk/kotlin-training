@@ -8,6 +8,7 @@ services:
       - "8080:8080"
     volumes:
       - "./build/libs/tomcat-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war"
+      - "./docker/tomcat/server.xml:/usr/local/tomcat/conf/server.xml"
     environment:
       SPRING_PROFILES_ACTIVE: docker
 # >>> tomcat
