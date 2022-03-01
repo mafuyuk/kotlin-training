@@ -7,6 +7,7 @@ Tomcat + Spring Bootを試す
 $ ./gradlew bootRun
 $ curl http://localhost:8080/hello \
   -H "Content-Type: application/json"
+  hello
 $ open http://localhost:8080/error
 ```
 ### docker
@@ -15,5 +16,7 @@ $ ./gradlew bootWar
 $ docker compose up -d
 $ curl http://localhost:8080/hello \
   -H "Content-Type: application/json"
+  hello-docker
 $ open http://localhost:8080/error
+# スタックトレースが表示されてしまう
 ```

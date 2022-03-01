@@ -16,3 +16,6 @@ server:
     include-message: always
     whitelabel:
       enabled: false
+
+app:
+  hello: hello-docker
